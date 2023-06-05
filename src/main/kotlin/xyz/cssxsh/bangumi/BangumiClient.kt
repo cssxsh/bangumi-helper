@@ -98,9 +98,8 @@ public open class BangumiClient(@PublishedApi internal val config: BangumiClient
     public open val moderation: ModerationController by lazy { ModerationController(this) }
     public open val chat: ChatController by lazy { ChatController(this) }
 
-    public suspend fun calendar(): Any {
-        return http.get("https://api.bgm.tv/calendar")
-            .body<JsonElement>()
+    public suspend fun calendar(): List<BangumiCalendar> {
+        return http.get("https://api.bgm.tv/calendar").body()
     }
 
     public open fun clearToken() {

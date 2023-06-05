@@ -3,7 +3,6 @@ package xyz.cssxsh.bangumi
 import kotlinx.coroutines.*
 import org.junit.jupiter.api.*
 
-// fRCJpdLU9V30LwgQEo8lJ7VpLdtG5TowTi4adSdz
 internal class BangumiClientTest {
     private val config = object : BangumiClientConfig {
         override val proxy: String = ""
@@ -17,6 +16,7 @@ internal class BangumiClientTest {
 
     @Test
     fun calendar(): Unit = runBlocking {
-        println(client.calendar())
+        val calendars = client.calendar()
+        Assertions.assertNotNull(calendars.find { it.weekday.isToday })
     }
 }
