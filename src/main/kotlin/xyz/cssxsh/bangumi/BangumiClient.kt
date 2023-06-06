@@ -13,17 +13,9 @@ import io.ktor.client.statement.*
 import io.ktor.serialization.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.utils.io.charsets.*
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonElement
-import xyz.cssxsh.bangumi.chat.ChatController
-import xyz.cssxsh.bangumi.completion.CompletionController
-import xyz.cssxsh.bangumi.edit.EditController
-import xyz.cssxsh.bangumi.embedding.EmbeddingController
-import xyz.cssxsh.bangumi.file.FileController
-import xyz.cssxsh.bangumi.finetune.FineTuneController
-import xyz.cssxsh.bangumi.image.ImageController
-import xyz.cssxsh.bangumi.model.ModelController
-import xyz.cssxsh.bangumi.moderation.ModerationController
+import kotlinx.serialization.json.*
+import xyz.cssxsh.bangumi.search.*
+import xyz.cssxsh.bangumi.subject.*
 
 public open class BangumiClient(@PublishedApi internal val config: BangumiClientConfig) {
     public open val http: HttpClient = HttpClient(OkHttp) {
@@ -88,15 +80,8 @@ public open class BangumiClient(@PublishedApi internal val config: BangumiClient
             }
         }
     }
-    public open val model: ModelController by lazy { ModelController(this) }
-    public open val completion: CompletionController by lazy { CompletionController(this) }
-    public open val edit: EditController by lazy { EditController(this) }
-    public open val image: ImageController by lazy { ImageController(this) }
-    public open val embedding: EmbeddingController by lazy { EmbeddingController(this) }
-    public open val file: FileController by lazy { FileController(this) }
-    public open val finetune: FineTuneController by lazy { FineTuneController(this) }
-    public open val moderation: ModerationController by lazy { ModerationController(this) }
-    public open val chat: ChatController by lazy { ChatController(this) }
+    public open val subject: SubjectController by lazy { SubjectController(this) }
+    public open val search: SearchController by lazy { SearchController(this) }
 
     public suspend fun calendar(): List<BangumiCalendar> {
         return http.get("https://api.bgm.tv/calendar").body()

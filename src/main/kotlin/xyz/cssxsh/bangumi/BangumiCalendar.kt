@@ -11,7 +11,7 @@ import kotlinx.serialization.*
 @Serializable
 public data class BangumiCalendar(
     @SerialName("items")
-    val items: List<BangumiSubject> = emptyList(),
+    val items: List<BangumiSubjectSmall> = emptyList(),
     @SerialName("weekday")
     val weekday: Weekday
 )

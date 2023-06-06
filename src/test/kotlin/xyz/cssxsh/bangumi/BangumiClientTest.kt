@@ -19,4 +19,28 @@ internal class BangumiClientTest {
         val calendars = client.calendar()
         Assertions.assertNotNull(calendars.find { it.weekday.isToday })
     }
+
+    @Test
+    fun subject(): Unit = runBlocking {
+        val subject = client.subject.fetch(id = 207195)
+        Assertions.assertEquals(207195, subject.id)
+    }
+
+    @Test
+    fun search(): Unit = runBlocking {
+        val small = client.search.search(keywords = "露营") {
+            format = BangumiSubjectFormat.SMALL
+        }
+        println(small)
+
+        val medium = client.search.search(keywords = "偶像") {
+            format = BangumiSubjectFormat.MEDIUM
+        }
+        println(medium)
+
+        val large = client.search.search(keywords = "魔") {
+            format = BangumiSubjectFormat.LARGE
+        }
+        println(large)
+    }
 }

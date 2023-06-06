@@ -15,5 +15,7 @@ public data class Rating(
     @SerialName("score")
     val score: Double = 0.0,
     @SerialName("total")
-    val total: Int = 0
+    val total: Int = 0,
+    @SerialName("rank")
+    val rank: Int? = null,
 )

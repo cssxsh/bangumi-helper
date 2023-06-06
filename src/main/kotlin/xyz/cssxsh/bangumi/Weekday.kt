@@ -20,4 +20,6 @@ public data class Weekday(
     val ja: String = ""
 ) {
     public val isToday: Boolean get() = LocalDate.now().dayOfWeek.value == id
+
+    public fun asEnum(): DayOfWeek = DayOfWeek.of(id)
 }

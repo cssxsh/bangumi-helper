@@ -12,7 +12,7 @@ import kotlinx.serialization.*
  * @param dropped 抛弃
  */
 @Serializable
-public data class Collection(
+public data class BangumiCollection(
     @SerialName("wish")
     val wish: Int = 0,
     @SerialName("collect")
